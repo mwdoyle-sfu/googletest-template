@@ -46,28 +46,22 @@ TEST(ParallelogramTests, getAreaTest)
 TEST(ParallelogramTests, isRectangleTest)
 {
     // getKind
-    Parallelogram parallelogramSquare{Side{50}, Side{50}, Angle{89.99999999999999999}};
-    Parallelogram parallelogramRectangle{Side{50}, Side{60}, Angle{89.99999999999999999}};
-
-    // test isRectangle
-    // 0 is not rect
-    // 1 is rectangle
-//    std::cerr << "isRectangle = " << parallelogramSquare.getKind() << std::endl;
-//    std::cerr << "isRectangle = " << parallelogramSquare.isRectangle() << std::endl;
-//    std::cerr << "isRectangle = " << parallelogramRectangle.getKind() << std::endl;
-//    std::cerr << "isRectangle = " << parallelogramRectangle.isRectangle() << std::endl;
+    Parallelogram parallelogramSquare{Side{50}, Side{50}, Angle{90}};
+    Parallelogram parallelogramSquareTwo{Side{50}, Side{50}, Angle{89.999999999999999}};
 
     // every square is a rectangle but every rectangle is not a square
-    EXPECT_EQ(false, parallelogramRectangle.isRectangle());
-    EXPECT_EQ(false, parallelogramSquare.isRectangle());
+    // getKind returns a rectangle
+    EXPECT_EQ(shapes::Parallelogram::Kind::SQUARE, parallelogramSquare.getKind());
+    // isSquare returns true even if the interior angle is not 90 degrees
+    EXPECT_EQ(false, parallelogramSquareTwo.isSquare());
 }
 
 
-//TEST(ParallelogramTests, ParallelogramTestsFour)
-//{
-//    EXPECT_TRUE(false);
-//}
-//
+TEST(ParallelogramTests, ParallelogramTestsFour)
+{
+    EXPECT_TRUE(true);
+}
+
 //TEST(ParallelogramTests, ParallelogramTestsFive)
 //{
 //    EXPECT_TRUE(false);
