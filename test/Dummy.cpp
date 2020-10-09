@@ -43,31 +43,49 @@ TEST(ParallelogramTests, getAreaTest)
     ASSERT_EQ(round(parallelogram.getArea()), round(2121.32));
 }
 
-TEST(ParallelogramTests, isRectangleTest)
+TEST(ParallelogramTests, getKindTest)
 {
     // getKind
-    Parallelogram parallelogramSquare{Side{50}, Side{50}, Angle{90}};
-    Parallelogram parallelogramSquareTwo{Side{50}, Side{50}, Angle{89.999999999999999}};
+    Parallelogram parallelogramSquareOne{Side{50}, Side{50}, Angle{90}};
 
     // every square is a rectangle but every rectangle is not a square
     // getKind returns a rectangle
-    EXPECT_EQ(shapes::Parallelogram::Kind::SQUARE, parallelogramSquare.getKind());
+    EXPECT_EQ(shapes::Parallelogram::Kind::SQUARE, parallelogramSquareOne.getKind());
+}
+
+TEST(ParallelogramTests, nonPerfectSquareTest)
+{
+    // test if is square works in edge case
+    Parallelogram parallelogramSquareTwo{Side{50}, Side{50}, Angle{89.999999999999999}};
+
     // isSquare returns true even if the interior angle is not 90 degrees
     EXPECT_EQ(false, parallelogramSquareTwo.isSquare());
 }
 
 
-TEST(ParallelogramTests, ParallelogramTestsFour)
+
+TEST(ParallelogramTests, isSquareTest)
 {
-    EXPECT_TRUE(true);
+    Parallelogram parallelogram{Side{50}, Side{50}, Angle{90}};
+    // test if is square works with valid input
+    ASSERT_EQ(true, parallelogram.isSquare());
 }
 
-//TEST(ParallelogramTests, ParallelogramTestsFive)
-//{
-//    EXPECT_TRUE(false);
-//}
-//
-//TEST(ParallelogramTests, ParallelogramTestsSix)
-//{
-//    EXPECT_TRUE(false);
-//}
+TEST(ParallelogramTests, isRhombusTest)
+{
+    Parallelogram parallelogram{Side{50}, Side{50}, Angle{90}};
+    // test if is square works with valid input
+    ASSERT_EQ(true, parallelogram.isRhombus());
+}
+
+TEST(ParallelogramTests, invalidParallelogramTest)
+{
+    // inputs (x, y, z)
+    Parallelogram parallelogram{Side{50}, Side{60}, Angle{70}};
+    Parallelogram Rectangle{Side{50}, Side{60}, Angle{90}};
+    Parallelogram rhombus{Side{50}, Side{50}, Angle{70}};
+
+    EXPECT_EQ(shapes::Parallelogram::Kind::PARALLELOGRAM, parallelogram.getKind());
+    EXPECT_EQ(shapes::Parallelogram::Kind::RECTANGLE, Rectangle.getKind());
+    EXPECT_EQ(shapes::Parallelogram::Kind::RHOMBUS, rhombus.getKind());
+}
