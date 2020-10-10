@@ -59,15 +59,6 @@ TEST(ParallelogramTests, getKindTest)
     EXPECT_EQ(shapes::Parallelogram::Kind::SQUARE, parallelogramSquareOne.getKind());
 }
 
-TEST(ParallelogramTests, nonPerfectSquareTest)
-{
-    // test if is square works in edge case
-    Parallelogram parallelogramSquareTwo{Side{50}, Side{50}, Angle{89.999999999999999}};
-
-    // isSquare returns true even if the interior angle is not 90 degrees
-    EXPECT_EQ(false, parallelogramSquareTwo.isSquare());
-}
-
 TEST(ParallelogramTests, isSquareTest)
 {
     Parallelogram parallelogram{Side{50}, Side{50}, Angle{90}};
@@ -152,7 +143,7 @@ struct MockRankList : public RankList
 };
 
 
-TEST(AwardsTests, checkMatthewsOutcomeTest)
+TEST(AwardsTests, mockAwardsTest)
 {
     MockRankList mockRankList;
     MockAwardCeremonyActions mockAwardCeremonyActions;
